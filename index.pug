@@ -1,0 +1,47 @@
+html
+    head
+        meta(charset='utf-8')
+        title squarify
+        style.
+            h1, p, button {
+                font-family: -apple-system,BlinkMacSystemFont,"ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro",sans-serif;
+                text-align: center;
+            }
+            a {
+                text-decoration: none;
+            }
+            h1 a {
+                color: black;
+            }
+            #button {
+                position: relative;
+                text-align: center;
+                margin: 1em auto;
+                max-width: 500px;
+                font-size: 1.5em;
+                border: 2px solid blue;
+                color: blue;
+                background-color: white;
+                cursor: pointer;
+            }
+            #button:hover {
+                background-color: #EEEEEE;
+            }
+            input[type=file] {
+                position:absolute;
+                top:0;
+                left:0;
+                width:100%;
+                height:100%;
+                opacity:0;
+            }
+            input[type=submit] {
+                display: none;
+            }
+    body
+        h1: a(href='/') squarify
+        p アップロードされた画像に透明背景をつけて正方形の画像で返すプログラムです。
+        form(action='/download' method='POST' name='form' enctype='multipart/form-data')
+            #button 今すぐアップロード
+                input(type='file' name='file' onchange='document.form.submit()')
+                input(type='submit')
