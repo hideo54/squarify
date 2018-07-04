@@ -1,0 +1,11 @@
+{
+    "name": "squarify",
+    "version": "1.0.0",
+    "main": "app.js",
+    "author": "hideo54",
+    "license": "Apache-2.0",
+    "private": true,
+    "dependencies": {
+        "sharp": "^0.20.5"
+    }
+}
