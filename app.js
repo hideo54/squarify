@@ -1,5 +1,6 @@
 const Koa = require('koa');
 const app = new Koa();
+const route = require('koa-route');
 const multer = require('koa-multer');
 const fs = require('fs');
 const pug = require('pug');
