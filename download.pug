@@ -1,0 +1,32 @@
+html
+    head
+        meta(charset='utf-8')
+        title squarify
+        style.
+            h1, button {
+                font-family: -apple-system,BlinkMacSystemFont,"ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro",sans-serif;
+                text-align: center;
+            }
+            a {
+                text-decoration: none;
+            }
+            h1 a {
+                color: black;
+            }
+            #button {
+                display: block;
+                text-align: center;
+                margin: 1em auto;
+                max-width: 500px;
+                font-size: 1.5em;
+                border: 2px solid blue;
+                color: blue;
+                background-color: white;
+                cursor: pointer;
+            }
+            #button:hover {
+                background-color: #EEEEEE;
+            }
+    body
+        h1: a(href='/') squarify
+        a(href='/output' download='output.png')#button ダウンロード

@@ -1,5 +1,10 @@
-const sharp = require('sharp');
+const Koa = require('koa');
+const app = new Koa();
+const multer = require('koa-multer');
+const fs = require('fs');
+const pug = require('pug');
 
+const sharp = require('sharp');
 const getSize = file => {
     return new Promise((resolve, reject) => {
         sharp(file).metadata().then(data => {
@@ -7,9 +12,7 @@ const getSize = file => {
          });
     });
 };
-
-const main = async file => {
-    const size = await getSize(file);
+const returnPNG = async (file, size) => {
     const max = Math.max(size.width, size.height);
     let extendedLength;
     const diff = Math.abs(size.width - size.height);
@@ -20,11 +23,37 @@ const main = async file => {
     } else {
         extendedLength = {top: 0, bottom: 0, left: former, right: latter};
     }
-    console.log(extendedLength);
-    sharp(file).background( { r: 0, g: 0, b: 0, alpha: 0 } )
+    await sharp(file).background( { r: 0, g: 0, b: 0, alpha: 0 } )
         .extend(extendedLength)
         .png()
         .toFile('output.png');
 };
 
-main('sample.jpg');
+
+app.use(route.post('/download', multer().single('file')));
+app.use(async (ctx, next) => {
+    if (ctx.path === '/') {
+        ctx.status = 200;
+        ctx.body = pug.renderFile('index.pug');
+    } else if (ctx.path === '/download') {
+        if (ctx.method === 'GET') {
+            ctx.status = 303;
+            ctx.body = '<head><meta http-equiv="refresh" content="0; URL=/" /></head>';
+        }
+        if (ctx.method === 'POST') {
+            const buf = ctx.req.file.buffer;
+            const size = await getSize(buf);
+            await returnPNG(buf, size);
+            ctx.status = 200;
+            ctx.body = pug.renderFile('download.pug');
+        }
+    } else if (ctx.path === '/output') {
+        ctx.status = 200;
+        ctx.type = 'image/png';
+        ctx.body = fs.createReadStream('output.png');
+    } else {
+        ctx.status = 500;
+    }
+});
+
+app.listen(3000);

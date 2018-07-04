@@ -6,6 +6,9 @@
     "license": "Apache-2.0",
     "private": true,
     "dependencies": {
+        "koa": "^2.5.1",
+        "koa-multer": "^1.0.2",
+        "pug": "^2.0.3",
         "sharp": "^0.20.5"
     }
 }
