@@ -3,30 +3,26 @@ html
         meta(charset='utf-8')
         title squarify
         style.
-            h1, a {
-                font-family: -apple-system,BlinkMacSystemFont,"ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro",sans-serif;
+            * {
                 text-align: center;
+            }
+            h1, p, a {
+                font-family: -apple-system,BlinkMacSystemFont,"ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro",sans-serif;
             }
             a {
                 text-decoration: none;
             }
+            p {
+                margin: 1em;
+            }
             h1 a {
                 color: black;
             }
-            #button {
-                display: block;
-                text-align: center;
-                margin: 1em auto;
-                max-width: 500px;
-                font-size: 1.5em;
-                border: 2px solid blue;
-                color: blue;
-                background-color: white;
-                cursor: pointer;
-            }
-            #button:hover {
-                background-color: #EEEEEE;
-            }
     body
         h1: a(href='/') squarify
-        a(href='/output' download='output.png')#button ダウンロード
+        p ダウンロードが開始されます…
+        p: a(href='/output' download='output.png')#dl 開始されない場合はこちらをクリックしてください
+        p: a(href='/')#top 戻る
+        script.
+            document.getElementById('dl').click();
+            document.getElementById('top').click();
