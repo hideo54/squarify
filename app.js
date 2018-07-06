@@ -30,7 +30,6 @@ const returnPNG = async (file, size) => {
         .toFile('output.png');
 };
 
-
 app.use(route.post('/download', multer().single('file')));
 app.use(async (ctx, next) => {
     if (ctx.path === '/') {
