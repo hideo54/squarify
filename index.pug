@@ -3,7 +3,7 @@ html
         meta(charset='utf-8')
         title squarify
         style.
-            h1, p, button {
+            h1, p, #button {
                 font-family: -apple-system,BlinkMacSystemFont,"ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro",sans-serif;
                 text-align: center;
             }
@@ -44,4 +44,3 @@ html
         form(action='/download' method='POST' name='form' enctype='multipart/form-data')
             #button 今すぐアップロード
                 input(type='file' name='file' onchange='document.form.submit()')
-                input(type='submit')
