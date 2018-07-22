@@ -9,9 +9,9 @@ html
         p アップロードされた画像に背景をつけて正方形の画像で返すプログラムです。
         form(action='/download' method='POST' name='form' enctype='multipart/form-data')
             #background
-                input#transparent(type='radio' name='radio' value='transparent' checked)
-                label(for='transparent') 背景を透明にする
-                input#white(type='radio' name='radio' value='white')
+                input#white(type='radio' name='radio' value='white' checked)
                 label(for='white') 背景を白にする
+                input#transparent(type='radio' name='radio' value='transparent')
+                label(for='transparent') 背景を透明にする
             #file アップロード
                 input(type='file' name='file' onchange='document.form.submit()')
