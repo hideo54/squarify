@@ -4,6 +4,7 @@ const route = require('koa-route');
 const multer = require('koa-multer');
 const fs = require('fs');
 const pug = require('pug');
+const uglifycss = require('uglifycss');
 
 const sharp = require('sharp');
 const getSize = file => {
@@ -56,7 +57,7 @@ app.use(async (ctx, next) => {
     } else if (ctx.path === '/style.css') {
         ctx.status = 200;
         ctx.type = 'text/css';
-        ctx.body = fs.createReadStream('style.css');
+        ctx.body = uglifycss.processFiles(['style.css']);
     } else {
         ctx.status = 500;
     }
