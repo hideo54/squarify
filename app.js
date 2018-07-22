@@ -53,6 +53,10 @@ app.use(async (ctx, next) => {
         ctx.status = 200;
         ctx.type = 'image/png';
         ctx.body = fs.createReadStream('output.png');
+    } else if (ctx.path === '/style.css') {
+        ctx.status = 200;
+        ctx.type = 'text/css';
+        ctx.body = fs.createReadStream('style.css');
     } else {
         ctx.status = 500;
     }
