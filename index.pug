@@ -4,7 +4,7 @@ html
         meta(name='viewport' content='width=device-width,initial-scale=1,maximum-scale=1')
         title squarify
         style.
-            h1, p, #button {
+            h1, p, #background, #file {
                 font-family: -apple-system,BlinkMacSystemFont,"ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro",sans-serif;
                 text-align: center;
                 text-size-adjust: 100%;
@@ -16,7 +16,10 @@ html
             h1 a {
                 color: black;
             }
-            #button {
+            label[for='transparent'] {
+                margin-right: 1em;
+            }
+            #file {
                 position: relative;
                 text-align: center;
                 margin: 1em auto;
@@ -27,7 +30,7 @@ html
                 background-color: white;
                 cursor: pointer;
             }
-            #button:hover {
+            #file:hover {
                 background-color: #EEEEEE;
             }
             input[type=file] {
@@ -43,7 +46,12 @@ html
             }
     body
         h1: a(href='/') squarify
-        p アップロードされた画像に透明背景をつけて正方形の画像で返すプログラムです。
+        p アップロードされた画像に背景をつけて正方形の画像で返すプログラムです。
         form(action='/download' method='POST' name='form' enctype='multipart/form-data')
-            #button 今すぐアップロード
+            #background
+                input#transparent(type='radio' name='radio' value='transparent' checked)
+                label(for='transparent') 背景を透明にする
+                input#white(type='radio' name='radio' value='white')
+                label(for='white') 背景を白にする
+            #file アップロード
                 input(type='file' name='file' onchange='document.form.submit()')

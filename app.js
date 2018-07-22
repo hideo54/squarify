@@ -13,7 +13,7 @@ const getSize = file => {
          });
     });
 };
-const returnPNG = async (file, size) => {
+const returnPNG = async (file, size, isTransparent) => {
     const max = Math.max(size.width, size.height);
     let extendedLength;
     const diff = Math.abs(size.width - size.height);
@@ -24,7 +24,8 @@ const returnPNG = async (file, size) => {
     } else {
         extendedLength = {top: 0, bottom: 0, left: former, right: latter};
     }
-    await sharp(file).background( { r: 0, g: 0, b: 0, alpha: 0 } )
+    const alpha = isTransparent ? 0 : 1;
+    await sharp(file).background( { r: 255, g: 255, b: 255, alpha: alpha } )
         .extend(extendedLength)
         .png()
         .toFile('output.png');
@@ -43,7 +44,8 @@ app.use(async (ctx, next) => {
         if (ctx.method === 'POST') {
             const buf = ctx.req.file.buffer;
             const size = await getSize(buf);
-            await returnPNG(buf, size);
+            const isTransparent = ctx.req.body.radio === 'transparent' ? true : false;
+            await returnPNG(buf, size, isTransparent);
             ctx.status = 200;
             ctx.body = pug.renderFile('download.pug');
         }
