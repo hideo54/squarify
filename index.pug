@@ -5,9 +5,9 @@ html
         title squarify
         link(rel='stylesheet' type='text/css' href='style.css')
     body
-        h1: a(href='/') squarify
+        h1: a(href='./') squarify
         p アップロードされた画像に背景をつけて正方形の画像で返すプログラムです。
-        form(action='/download' method='POST' name='form' enctype='multipart/form-data')
+        form(action='./download' method='POST' name='form' enctype='multipart/form-data')
             #background
                 input#white(type='radio' name='radio' value='white' checked)
                 label(for='white') 背景を白にする
