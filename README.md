@@ -1,3 +1,5 @@
+[transformer](https://github.com/hideo54/transformer) という上位互換アプリを開発したため、このリポジトリの開発更新は停止いたしました。(Mar 13, 2020)
+
 # squarify
 
 アップロードされた画像に背景をつけて正方形の画像で返すWebアプリケーションです。
